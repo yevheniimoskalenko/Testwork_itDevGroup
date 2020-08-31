@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <Nuxt />
-  </div>
+  <el-container>
+    <el-main>
+      <Nuxt />
+    </el-main>
+  </el-container>
 </template>
 
 <style>
