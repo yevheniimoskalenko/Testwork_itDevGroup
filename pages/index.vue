@@ -6,7 +6,12 @@
         class="list"
         infinite-scroll-disabled="disabled"
       >
-        <li v-for="i in count" :key="i" class="list-item">{{ i }}</li>
+        <div v-for="item in respons" :key="item.id" class="list-item">
+          <nuxt-link :to="{ name: 'post', query: { id: `${item.id}` } }"
+            ><h2>{{ item.title }}</h2></nuxt-link
+          >
+          <p>{{ item.body }}</p>
+        </div>
       </ul>
       <p v-if="loading">Loading...</p>
       <p v-if="noMore">No more</p>
@@ -16,6 +21,14 @@
 
 <script>
 export default {
+  async asyncData() {
+    try {
+      const data = await fetch('https://jsonplaceholder.typicode.com/posts')
+      // const user = await fetch('https://jsonplaceholder.typicode.com/posts')
+      const respons = await data.json()
+      return { respons }
+    } catch (e) {}
+  },
   data() {
     return {
       count: 10,
@@ -46,6 +59,6 @@ export default {
 </script>
 <style scoped>
 .infinite-list-wrapper {
-  height: 188px;
+  /* height: 188px; */
 }
 </style>
