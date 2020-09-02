@@ -2,7 +2,7 @@
   <div class="post">
     <div class="content">
       <h2>{{ respons.title }}</h2>
-      <nuxt-link :to="{ name: 'author', query: { id: respons.userId } }">
+      <nuxt-link :to="{ name: 'author-id', query: { id: respons.userId } }">
         <span>{{ respons.name }}</span>
       </nuxt-link>
       <p>{{ respons.body }}</p>
