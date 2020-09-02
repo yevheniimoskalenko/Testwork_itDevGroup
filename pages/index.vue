@@ -26,10 +26,12 @@ export default {
           method: 'get',
           url: 'https://jsonplaceholder.typicode.com/users',
         }).then(async (res) => {
-          const item = []
+          const item = [] // створюємо пустий масив
           for await (const key of r.data) {
+            // першою ітрерацією ми отримали перший пост
             for await (const name of res.data) {
               if (key.userId === name.id) {
+                // беремо порівнюємо два значення якщо вони збігаються но ми добавляємо новий значення із ім'я і повертаємо його в item
                 item.push(_.assign(key, { name: name.name }))
               }
             }
